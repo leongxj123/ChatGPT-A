@@ -16,7 +16,7 @@ export default async function sendEmail(
   formData.append("from", `ChatGPT <no-reply@${domain}>`);
   to.forEach((recipient) => formData.append("to", recipient));
   formData.append("subject", `Your activation code: ${code}`);
-  formData.append("template", "verification_code");
+  formData.append("template", "vercode");
   formData.append("h:X-Mailgun-Variables", JSON.stringify({ name, code }));
 
   const response = await fetch(url, {
