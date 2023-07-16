@@ -1,5 +1,5 @@
 /**
- * Elastice Email sender
+ * Elastic Email sender
  */
 const apiKey = process.env.ELASTICE_EMAIL_API_KEY!;
 const senderEmail = process.env.ELASTICE_EMAIL_SENDER!;
@@ -10,12 +10,11 @@ export default async function sendEmail(to: string, code: string | number) {
     from: senderEmail,
     to: to,
     subject: "[ChatGPT-Admin-Web] 激活码",
-    bodyHtml: `您的激活码是：${code}`,
+    bodyHtml: data.bodyHtml.replace("${code}", code.toString()),
   };
 
   const formData = new FormData();
   for (const key in params) {
-    // @ts-ignore
     formData.append(key, params[key]);
   }
 
